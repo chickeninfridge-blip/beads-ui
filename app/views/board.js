@@ -235,7 +235,9 @@ export function createBoardView(
           </button>
           <div class="filter-dropdown__menu">
             <div
-              class="filter-dropdown__option ${creator_filter === '' ? 'is-selected' : ''}"
+              class="filter-dropdown__option ${creator_filter === ''
+                ? 'is-selected'
+                : ''}"
               @click=${() => selectCreatorFilter('')}
             >
               Any
@@ -243,7 +245,9 @@ export function createBoardView(
             ${unique_creators.map(
               (c) => html`
                 <div
-                  class="filter-dropdown__option ${creator_filter === c ? 'is-selected' : ''}"
+                  class="filter-dropdown__option ${creator_filter === c
+                    ? 'is-selected'
+                    : ''}"
                   @click=${() => selectCreatorFilter(c)}
                 >
                   ${c}
@@ -262,7 +266,9 @@ export function createBoardView(
           </button>
           <div class="filter-dropdown__menu">
             <div
-              class="filter-dropdown__option ${assignee_filter === '' ? 'is-selected' : ''}"
+              class="filter-dropdown__option ${assignee_filter === ''
+                ? 'is-selected'
+                : ''}"
               @click=${() => selectAssigneeFilter('')}
             >
               Any
@@ -270,7 +276,9 @@ export function createBoardView(
             ${unique_assignees.map(
               (a) => html`
                 <div
-                  class="filter-dropdown__option ${assignee_filter === a ? 'is-selected' : ''}"
+                  class="filter-dropdown__option ${assignee_filter === a
+                    ? 'is-selected'
+                    : ''}"
                   @click=${() => selectAssigneeFilter(a)}
                 >
                   ${a}
@@ -737,8 +745,14 @@ export function createBoardView(
    * @returns {string[]}
    */
   function uniqueNonEmpty(values) {
-    const set = new Set(values.filter((v) => v && typeof v === 'string'));
-    return Array.from(set).sort();
+    /** @type {Set<string>} */
+    const unique_values = new Set();
+    for (const value of values) {
+      if (typeof value === 'string' && value.length > 0) {
+        unique_values.add(value);
+      }
+    }
+    return Array.from(unique_values).sort();
   }
 
   /**

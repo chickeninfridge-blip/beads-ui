@@ -158,7 +158,9 @@ describe('board creator/assignee filters', () => {
 
     // Open creator dropdown and select 'alice'
     const dropdowns = mount.querySelectorAll('.filter-dropdown');
-    const creatorTrigger = dropdowns[0].querySelector('.filter-dropdown__trigger');
+    const creatorTrigger = dropdowns[0].querySelector(
+      '.filter-dropdown__trigger'
+    );
     creatorTrigger?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 
     // Find and click the 'alice' option
@@ -221,7 +223,9 @@ describe('board creator/assignee filters', () => {
 
     // Open assignee dropdown (second dropdown) and select 'bob'
     const dropdowns = mount.querySelectorAll('.filter-dropdown');
-    const assigneeTrigger = dropdowns[1].querySelector('.filter-dropdown__trigger');
+    const assigneeTrigger = dropdowns[1].querySelector(
+      '.filter-dropdown__trigger'
+    );
     assigneeTrigger?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 
     // Find and click the 'bob' option
@@ -285,9 +289,9 @@ describe('board creator/assignee filters', () => {
 
     // Open creator dropdown and select 'alice'
     const dropdowns = mount.querySelectorAll('.filter-dropdown');
-    dropdowns[0].querySelector('.filter-dropdown__trigger')?.dispatchEvent(
-      new MouseEvent('click', { bubbles: true })
-    );
+    dropdowns[0]
+      .querySelector('.filter-dropdown__trigger')
+      ?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     const aliceOption = Array.from(
       dropdowns[0].querySelectorAll('.filter-dropdown__option')
     ).find((el) => el.textContent?.trim() === 'alice');
@@ -296,9 +300,9 @@ describe('board creator/assignee filters', () => {
     expect(state.board?.creator_filter).toBe('alice');
 
     // Open assignee dropdown and select 'bob'
-    dropdowns[1].querySelector('.filter-dropdown__trigger')?.dispatchEvent(
-      new MouseEvent('click', { bubbles: true })
-    );
+    dropdowns[1]
+      .querySelector('.filter-dropdown__trigger')
+      ?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     const bobOption = Array.from(
       dropdowns[1].querySelectorAll('.filter-dropdown__option')
     ).find((el) => el.textContent?.trim() === 'bob');
@@ -347,8 +351,7 @@ describe('board creator/assignee filters', () => {
           creator_filter: 'alice'
         }
       }),
-      /** @param {Record<string, any>} _patch */
-      setState: (_patch) => {}
+      setState: () => {}
     };
 
     const view = createBoardView(
